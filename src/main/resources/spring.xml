@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+<!-- beans are objects managed by spring framework -->
+<!-- id is name we gave while asking for bean // class is src of this class file -->
+
+<!-- scope="singleton / prototype"  -->
+<!-- if scope is prototype it will create the new object everytime and only when we will call getBean() -->
+<!-- if scope is singleton it will create the new object by default while creating the appContext -->
+
+<!-- property tag is used to assign/inject value to vars while creating object -->
+
+<!-- autowire="byName" means by the name of property name that is defined in alien class i.e com  -->
+
+    <bean id="alien" class="org.meta.Alien" autowire="byName">
+    <!-- for setting value it will call setter thus called setter injection -->
+        <property name="age" value="21" />
+        <!-- for non premitive type vars we have to use ref and give ref of bean -->
+        <!-- <property name="lap" ref="laptop" /> -->
+
+        <!-- now we are using constructor to set value  -->
+        <!-- for now it's following the sequence of args of constructor but once we define type order will not matter -->
+        <!-- <constructor-arg type="org.meta.Laptop" ref="laptop" />
+        <constructor-arg type="int" value="33" /> -->
+
+        <!-- with name also sequence of args matters -->
+        <!-- <constructor-arg name="age" value="33" />
+        <constructor-arg name="lap" ref="laptop" /> -->
+
+        <!-- index can also be used to define which value is for which args -->
+        <!-- <constructor-arg index="1" ref="desktop" /> -->
+        <!-- <constructor-arg index="0" value="33" /> -->
+
+
+
+    </bean>
+
+<!-- if we define duplicate bean of same class it will create the objects again-->
+    <!-- <bean id="alien2" class="org.meta.Alien">
+    </bean> -->
+
+    <bean id="laptop" class="org.meta.Laptop">
+
+    </bean>
+
+    <!-- lazy-init="true" it will not create object while making context but when we need object -->
+<!-- but if a eger bean wants a object of lazy bean on load of context by autowireing it will create object of lazy bean also -->
+    <bean id="desktop" class="org.meta.Desktop" lazy-init="true">
+
+    </bean>
+
+<!-- see we have 2 objects of LAPTOP so which one should spring take app.java line 22. thus below is primary -->
+    <bean id="com" class="org.meta.Laptop" primary="true">
+
+    </bean>
+
+</beans>
