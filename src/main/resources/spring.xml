@@ -59,4 +59,6 @@
 
     </bean>
 
+    <!-- we can have inner bean also so that it can be accessed via parent class -->
+
 </beans>
